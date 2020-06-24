@@ -8,19 +8,26 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '4.0.3'
+    id 'java'
+}
+
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply from: "https://github.com/shadowfacts/maven/raw/master/maven.gradle"
 
 version = '1.0'
 group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'modid'
 
 repositories {
-	maven { url "https://oss.jfrog.org/artifactory/libs-release"}
 	jcenter()
 	mavenCentral()
+	maven { url "https://oss.jfrog.org/artifactory/libs-release"}
 }
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
@@ -97,8 +104,9 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
     
-    compile group: 'com.github.twitch4j', name: 'twitch4j', version: '1.0.0-alpha.24'
-    compile 'com.github.philippheuer.credentialmanager:credentialmanager:0.0.5'
+    shadow group: 'com.github.twitch4j', name: 'twitch4j', version: '1.0.0-alpha.24'
+    //shadow 'org.apache.commons:commons-lang3:3.10'
+    //shadow 'com.github.philippheuer.credentialmanager:credentialmanager:0.0.5'
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
@@ -134,6 +142,22 @@ jar {
         ])
     }
 }
+
+shadowJar {
+    project.configurations.shadow.setTransitive(true);
+    configurations = [project.configurations.shadow]
+    classifier = ''
+    relocate 'com.github.twitch4j', 'shadow.com.github.twitch4j'
+    relocate 'org.apache.commons', 'shadow.org.apache.commons'
+}
+
+tasks.build.dependsOn(shadowJar)
+
+reobf {
+    shadowJar {}
+}
+
+
 
 // Example configuration to allow publishing using the maven-publish task
 // This is the preferred method to reobfuscate your jar file

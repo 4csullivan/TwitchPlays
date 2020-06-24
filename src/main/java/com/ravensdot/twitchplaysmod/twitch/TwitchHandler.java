@@ -6,16 +6,12 @@ import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
 import com.ravensdot.twitchplaysmod.config.TwitchConfig;
 
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.config.ModConfig;
-
 public class TwitchHandler
 {
 	private TwitchClient twitchClient;
 	
 	public TwitchHandler()
 	{
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TwitchConfig.SPEC);
 		OAuth2Credential oauth = new OAuth2Credential(TwitchConfig.CHANNEL, TwitchConfig.OAUTH_TOKEN);
 		
 		twitchClient = TwitchClientBuilder.builder()

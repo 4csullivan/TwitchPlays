@@ -21,7 +21,7 @@ public class SpawnMobOnCommand
 		switch(command)
 		{
 		case "zombie":
-			if (!Minecraft.getInstance().world.isRemote) {
+			if (Minecraft.getInstance().world.isRemote) {
 				PacketHandler.sendCommand(String.format("/execute at @p run summon minecraft:area_effect_cloud ~-2 ~1 ~2 {Passengers:[{id:\"minecraft:zombie\",CustomName:\"\\\"%s\\\"\",CustomNameVisible:1}]}", username));
 			}
 			break;
