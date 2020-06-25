@@ -103,8 +103,9 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
-    
-    shadow group: 'com.github.twitch4j', name: 'twitch4j', version: '1.0.0-alpha.24'
+
+    /* NOTE: compile = test, shadow = release */
+    compile group: 'com.github.twitch4j', name: 'twitch4j', version: '1.0.0-alpha.24'
     //shadow 'org.apache.commons:commons-lang3:3.10'
     //shadow 'com.github.philippheuer.credentialmanager:credentialmanager:0.0.5'
 

@@ -25,13 +25,11 @@ public class TwitchPlays
     
     public TwitchPlays()
     {
-
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-        
-        RegistryHandler.init();
 
         MinecraftForge.EVENT_BUS.register(this);
+        RegistryHandler.init();
         
         PacketHandler.register();
         

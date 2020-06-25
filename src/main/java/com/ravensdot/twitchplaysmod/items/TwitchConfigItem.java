@@ -10,12 +10,12 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class TwitchConfigItem extends Item
+public class  TwitchConfigItem extends Item
 {
 	private TwitchHandler twitch;
 	public TwitchConfigItem()
 	{
-		super(new Item.Properties().group(ItemGroup.MATERIALS));
+		super(new Item.Properties().group(ItemGroup.MISC));
 	}
 
 	@Override

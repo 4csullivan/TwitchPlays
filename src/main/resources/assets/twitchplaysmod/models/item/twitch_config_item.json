@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+  	"layer0": "twitchplaysmod:items/twitch_config_item"
+  }
+}
