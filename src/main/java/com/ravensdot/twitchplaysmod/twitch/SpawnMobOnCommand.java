@@ -28,7 +28,7 @@ public class SpawnMobOnCommand
 		case "zombie":
 			if (checkRemote()) {
 				PacketHandler.sendCommand(String.format("/execute at @p run summon minecraft:area_effect_cloud ~-2 ~1 ~2 {Passengers:[" +
-						"{id:\"minecraft:zombie\",CustomName:\"\\\"%s\\\"\",CustomNameVisible:1,ArmorItems:[{},{},{},{id:\"minecraft:leather_helmet\",tag:{display:{color:7286944}},Count:1}]}" +
+						"{id:\"twitchplaysmod:twitch_zombie\",CustomName:\"\\\"%s\\\"\",CustomNameVisible:1,ArmorItems:[{},{},{},{id:\"minecraft:leather_helmet\",tag:{display:{color:7286944}},Count:1}]}" +
 						"]}", username));
 			}
 			break;

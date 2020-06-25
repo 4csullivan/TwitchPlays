@@ -16,6 +16,6 @@ public class EntityInit {
             .register("twitch_zombie",
                     () -> EntityType.Builder
                         .create(TwitchZombieEntity::new, EntityClassification.MONSTER)
-                        .size(0.6f, 1.0f)
+                        .size(0.6f, 1.95f)
                         .build("twitch_zombie"));
 }

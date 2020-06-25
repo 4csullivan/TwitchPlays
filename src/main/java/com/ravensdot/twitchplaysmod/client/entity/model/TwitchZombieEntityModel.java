@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.ZombieEntity;
+import net.minecraft.util.math.MathHelper;
 
 public class TwitchZombieEntityModel<T extends TwitchZombieEntity> extends EntityModel<T> {
 	private final ModelRenderer body;
@@ -44,7 +45,7 @@ public class TwitchZombieEntityModel<T extends TwitchZombieEntity> extends Entit
 		rightItem = new ModelRenderer(this);
 		rightItem.setRotationPoint(-1.0F, 7.0F, 1.0F);
 		rightArm.addChild(rightItem);
-		
+
 
 		leftArm = new ModelRenderer(this);
 		leftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
@@ -67,7 +68,36 @@ public class TwitchZombieEntityModel<T extends TwitchZombieEntity> extends Entit
 
 	@Override
 	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-		//previously the render function, render code was moved to a method below
+		boolean flag = entity.isAggressive();
+		float f = MathHelper.sin(this.swingProgress * (float)Math.PI);
+		float f1 = MathHelper.sin((1.0F - (1.0F - this.swingProgress) * (1.0F - this.swingProgress)) * (float)Math.PI);
+		this.rightArm.rotateAngleZ = 0.0F;
+		this.leftArm.rotateAngleZ = 0.0F;
+		this.rightArm.rotateAngleY = -(0.1F - f * 0.6F);
+		this.leftArm.rotateAngleY = 0.1F - f * 0.6F;
+		float f2 = -(float)Math.PI / (flag ? 1.5F : 2.25F);
+		this.rightArm.rotateAngleX = f2;
+		this.leftArm.rotateAngleX = f2;
+		this.rightArm.rotateAngleX += f * 1.2F - f1 * 0.4F;
+		this.leftArm.rotateAngleX += f * 1.2F - f1 * 0.4F;
+		this.rightArm.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+		this.leftArm.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+		this.rightArm.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+		this.leftArm.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+
+		this.body.rotateAngleX = 0.0F;
+		this.rightLeg.rotationPointZ = 0.1F;
+		this.leftLeg.rotationPointZ = 0.1F;
+		this.rightLeg.rotationPointY = 12.0F;
+		this.leftLeg.rotationPointY = 12.0F;
+		this.head.rotationPointY = 0.0F;
+		this.body.rotationPointY = 0.0F;
+
+		this.rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
+		this.leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount * 0.5F;
+		this.rightLeg.rotateAngleY = 0.0F;
+		this.leftLeg.rotateAngleY = 0.0F;
+
 	}
 
 	@Override
