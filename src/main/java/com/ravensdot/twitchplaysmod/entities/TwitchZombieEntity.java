@@ -1,10 +1,7 @@
 package com.ravensdot.twitchplaysmod.entities;
 
 import com.ravensdot.twitchplaysmod.util.RegistryHandler;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
@@ -19,14 +16,23 @@ public class TwitchZombieEntity extends ZombieEntity
 		super(type, worldIn);
 	}
 
-	/*@Override
+
+
+	@Override
 	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
 			ILivingEntityData spawnDataIn, CompoundNBT dataTag)
 	{
-		// TODO Auto-generated method stub
+
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
+	@Override
+	protected void registerAttributes() {
+		super.registerAttributes();
+		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.27);
+	}
+
+	/*
 	@Override
 	public AgeableEntity createChild(AgeableEntity ageable)
 	{

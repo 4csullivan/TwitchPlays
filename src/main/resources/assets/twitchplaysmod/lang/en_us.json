@@ -1,3 +1,4 @@
 {
-  "item.twitchplaysmod.twitch_config_item": "Twitch Config"
+  "item.twitchplaysmod.twitch_config_item": "Twitch Config",
+  "entities.twitchplaysmod.twitch_zombie": "Twitch Zombie"
 }

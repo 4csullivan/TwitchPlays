@@ -16,6 +16,7 @@ public class TwitchConfig
 	
 	public static String CLIENT_ID, CLIENT_SECRET, CHANNEL, OAUTH_TOKEN;
 	public static boolean IS_CONNECTED;
+	public static float SPAWN_RATE_LIMIT;
 	
 	public static void bakeConfig()
 	{
@@ -24,6 +25,7 @@ public class TwitchConfig
 		CHANNEL = GENERAL.Channel.get();
 		OAUTH_TOKEN = GENERAL.OauthToken.get();
 		IS_CONNECTED = GENERAL.Connected.get();
+		SPAWN_RATE_LIMIT = GENERAL.SpawnRateLimit.get();
 	}
 	
 	@SubscribeEvent
@@ -41,7 +43,8 @@ public class TwitchConfig
 		public final ForgeConfigSpec.ConfigValue<String> Channel;
 		public final ForgeConfigSpec.ConfigValue<String> OauthToken;
 		public final ForgeConfigSpec.ConfigValue<Boolean> Connected;
-		
+		public final ForgeConfigSpec.ConfigValue<Float> SpawnRateLimit;
+
 		public General(ForgeConfigSpec.Builder builder)
 		{
 			builder.push("General");
@@ -65,6 +68,10 @@ public class TwitchConfig
 			Connected = builder
 					.comment("Enable/Disable Twitch Integration [false/true|default:false]")
 					.define("isConnected", false);
+
+			SpawnRateLimit = builder
+					.comment("Limit how often a user can spawn")
+					.define("spawnRateLimit", 5f);
 			
 			builder.pop();
 		}

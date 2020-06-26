@@ -1,4 +1,4 @@
-package com.ravensdot.twitchplaysmod.util;
+package com.ravensdot.twitchplaysmod.client;
 
 import com.ravensdot.twitchplaysmod.TwitchPlays;
 import com.ravensdot.twitchplaysmod.client.entity.render.TwitchZombieEntityRender;

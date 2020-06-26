@@ -6,6 +6,9 @@ import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
 import com.ravensdot.twitchplaysmod.config.TwitchConfig;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class TwitchHandler
 {
 	private TwitchClient twitchClient;
@@ -19,9 +22,18 @@ public class TwitchHandler
 				 	.withClientSecret(TwitchConfig.CLIENT_SECRET)
 					.withEnableHelix(true)
 					.withEnableChat(true)
+					.withEnablePubSub(true)
 					.withChatAccount(oauth)
 					.withCommandTrigger("!")
 					.build();
+
+		String channelID = twitchClient
+				.getHelix()
+				.getUsers(oauth.getAccessToken(), null, Collections.singletonList(TwitchConfig.CHANNEL))
+				.execute()
+				.getUsers().get(0).getId();
+
+		twitchClient.getPubSub().listenForChannelPointsRedemptionEvents(oauth, channelID);
 	}
 	
 	public void register()

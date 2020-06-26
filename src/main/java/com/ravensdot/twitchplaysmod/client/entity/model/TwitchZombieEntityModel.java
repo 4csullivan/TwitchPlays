@@ -115,4 +115,6 @@ public class TwitchZombieEntityModel<T extends TwitchZombieEntity> extends Entit
 	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
 		super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);
 	}
+
+
 }
