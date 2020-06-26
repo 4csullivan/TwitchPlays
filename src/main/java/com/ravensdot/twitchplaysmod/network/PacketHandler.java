@@ -16,13 +16,13 @@ public final class PacketHandler
 		    PROTOCOL_VERSION::equals
 		);
 	
-	public static void sendCommand(String command) {
-		INSTANCE.sendToServer(new CommandPacket(command));
+	public static void sendCommand(int x, int y, int z) {
+		INSTANCE.sendToServer(new CommandPacket(x, y, z));
 	}
 	
 	public static void register()
 	{
 		int discrim = 0;
 		INSTANCE.registerMessage(discrim++, CommandPacket.class, CommandPacket::encode, CommandPacket::new, CommandPacket::handle);
-	}	
+	}
 }

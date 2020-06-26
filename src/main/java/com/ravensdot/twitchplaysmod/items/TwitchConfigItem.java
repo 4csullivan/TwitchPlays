@@ -21,15 +21,13 @@ public class  TwitchConfigItem extends Item
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
-		if (twitch != null) {
-			twitch.stop();
-		}
-		twitch = new TwitchHandler();
-		twitch.register();
-		twitch.start();
-		if (!worldIn.isRemote()) {
-			
-			//PacketHandler.sendCommand("/execute at @p run summon minecraft:area_effect_cloud ~2 ~1 ~2 {Passengers:[{id:\"minecraft:zombie\",CustomName:\"\\\"Zombie\\\"\",CustomNameVisible:1}]}");
+		if (!worldIn.isRemote) {
+			if (twitch != null) {
+				twitch.stop();
+			}
+			twitch = new TwitchHandler();
+			twitch.register();
+			twitch.start();
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
