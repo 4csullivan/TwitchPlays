@@ -32,6 +32,7 @@ public class TwitchZombieEntity extends ZombieEntity
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.27);
 	}
 
+	
 	/*
 	@Override
 	public AgeableEntity createChild(AgeableEntity ageable)

@@ -16,10 +16,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.*;
 
@@ -58,7 +61,7 @@ public class SpawnMobOnCommand
 		case "zombie":
 			BlockPos spawnLoc = findSpawnLoc(mc);
 			System.out.println("sending packet...");
-			PacketHandler.sendCommand(spawnLoc.getX(), spawnLoc.getY(), spawnLoc.getZ());
+			PacketHandler.sendCommand(spawnLoc.getX(), spawnLoc.getY(), spawnLoc.getZ(), username);
 
 			//AxisAlignedBB aabb = mc.player.getBoundingBox().expand(SPAWN_RADIUS, SPAWN_RADIUS, SPAWN_RADIUS);
 			//mc.world.findBlockstateInArea(aabb, Blocks.AIR);
@@ -176,7 +179,7 @@ public class SpawnMobOnCommand
 		}
 		return isRemote;
 	}
-	
+
 	/*@EventSubscriber
 	public void onMessage(ChannelMessageEvent event) {
 		System.out.print("message recieved! " + event.getMessage());

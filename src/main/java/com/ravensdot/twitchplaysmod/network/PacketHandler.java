@@ -16,8 +16,8 @@ public final class PacketHandler
 		    PROTOCOL_VERSION::equals
 		);
 	
-	public static void sendCommand(int x, int y, int z) {
-		INSTANCE.sendToServer(new CommandPacket(x, y, z));
+	public static void sendCommand(int x, int y, int z, String title) {
+		INSTANCE.sendToServer(new CommandPacket(x, y, z, title));
 	}
 	
 	public static void register()
