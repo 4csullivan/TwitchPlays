@@ -1,6 +1,7 @@
 package com.ravensdot.twitchplaysmod.client;
 
 import com.ravensdot.twitchplaysmod.TwitchPlays;
+import com.ravensdot.twitchplaysmod.client.entity.render.TwitchSilverfishEntityRender;
 import com.ravensdot.twitchplaysmod.client.entity.render.TwitchZombieEntityRender;
 import com.ravensdot.twitchplaysmod.init.EntityInit;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,5 +17,6 @@ public class ClientEventBusSubscriber {
     public static void clientSetup(FMLClientSetupEvent event)
     {
         RenderingRegistry.registerEntityRenderingHandler(EntityInit.TWITCH_ZOMBIE_ENTITY.get(), TwitchZombieEntityRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.TWITCH_SILVERFISH_ENTITY.get(), TwitchSilverfishEntityRender::new);
     }
 }

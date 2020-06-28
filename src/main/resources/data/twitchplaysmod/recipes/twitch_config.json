@@ -1,0 +1,21 @@
+{
+  "type":"crafting_shaped",
+  "pattern":
+  [
+    "xxx",
+    "xxx",
+    "x  "
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "result":
+  {
+    "item": "twitchplaysmod:twitch_config_item",
+    "count": 1
+  }
+}

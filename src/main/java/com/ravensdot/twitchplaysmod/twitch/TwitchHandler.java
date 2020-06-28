@@ -6,7 +6,6 @@ import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
 import com.ravensdot.twitchplaysmod.config.TwitchConfig;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 public class TwitchHandler
@@ -38,7 +37,7 @@ public class TwitchHandler
 	
 	public void register()
 	{
-		SpawnMobOnCommand spawnMobEvent = new SpawnMobOnCommand();
+		PlayerInteraction spawnMobEvent = new PlayerInteraction();
 		twitchClient.getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(spawnMobEvent);
 	}
 	

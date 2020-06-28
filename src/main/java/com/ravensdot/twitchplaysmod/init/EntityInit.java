@@ -1,6 +1,7 @@
 package com.ravensdot.twitchplaysmod.init;
 
 import com.ravensdot.twitchplaysmod.TwitchPlays;
+import com.ravensdot.twitchplaysmod.entities.TwitchSilverfishEntity;
 import com.ravensdot.twitchplaysmod.entities.TwitchZombieEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -18,4 +19,11 @@ public class EntityInit {
                         .create(TwitchZombieEntity::new, EntityClassification.MONSTER)
                         .size(0.6f, 1.95f)
                         .build("twitch_zombie"));
+
+    public static final RegistryObject<EntityType<TwitchSilverfishEntity>> TWITCH_SILVERFISH_ENTITY = ENTITY_TYPES
+            .register("twitch_silverfish",
+                    () -> EntityType.Builder
+                            .create(TwitchSilverfishEntity::new, EntityClassification.MONSTER)
+                            .size(0.6f, 1.95f)
+                            .build("twitch_silverfish"));
 }

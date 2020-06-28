@@ -22,7 +22,7 @@ public class TwitchZombieEntity extends ZombieEntity
 	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
 			ILivingEntityData spawnDataIn, CompoundNBT dataTag)
 	{
-
+		//dataTag.putInt("CustomNameVisible", 1);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 

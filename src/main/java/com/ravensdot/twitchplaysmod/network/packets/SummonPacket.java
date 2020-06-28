@@ -1,51 +1,38 @@
 package com.ravensdot.twitchplaysmod.network.packets;
 
-import java.io.DataOutput;
 import java.util.function.Supplier;
 
 import com.ravensdot.twitchplaysmod.entities.TwitchZombieEntity;
 import com.ravensdot.twitchplaysmod.init.EntityInit;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import net.minecraft.client.Minecraft;
-import net.minecraft.command.arguments.NBTCompoundTagArgument;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkEvent;
 
-public class CommandPacket
+public class SummonPacket
 {
 	//private final String command;
 	private final int x, y, z;
 	private final String title;
+	private final boolean isSub;
 
-	public CommandPacket(PacketBuffer buf) {
+	public SummonPacket(PacketBuffer buf) {
 		this.x = buf.readInt();
 		this.y = buf.readInt();
 		this.z = buf.readInt();
 		this.title = buf.readString();
+		this.isSub = buf.readBoolean();
 	}
 	
-	public CommandPacket(int x, int y, int z, String title) {
+	public SummonPacket(int x, int y, int z, String title, boolean isSub) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
 		this.title = title;
+		this.isSub = isSub;
 	}
 	
 	public void encode(PacketBuffer buf) {
@@ -53,18 +40,20 @@ public class CommandPacket
 		buf.writeInt(this.y);
 		buf.writeInt(this.z);
 		buf.writeString(this.title);
+		buf.writeBoolean(this.isSub);
 	}
 	
-	public CommandPacket decode(PacketBuffer buf) {
-		return new CommandPacket(buf.readInt(), buf.readInt(), buf.readInt(), buf.readString());
+	public SummonPacket decode(PacketBuffer buf) {
+		return new SummonPacket(buf.readInt(), buf.readInt(), buf.readInt(), buf.readString(), buf.readBoolean());
 	}
 	
 	public void handle(Supplier<NetworkEvent.Context> ctx)
 	{
 		System.out.println("handling...");
 		StringTextComponent component = new StringTextComponent(title);
-		component.applyTextStyle(TextFormatting.GOLD);
-
+		if (isSub) {
+			component.applyTextStyle(TextFormatting.GOLD);
+		}
 		ctx.get().enqueueWork(()-> {
 			//Minecraft.getInstance().player.sendChatMessage(command);
 			World world = ctx.get().getSender().world;
@@ -72,7 +61,9 @@ public class CommandPacket
 				//TwitchZombieEntity twitchZombieEntity = new TwitchZombieEntity(EntityInit.TWITCH_ZOMBIE_ENTITY.get(), world);
 				//twitchZombieEntity.setPosition(this.x, this.y, this.z);
 				final BlockPos pos = new BlockPos(this.x, this.y, this.z);
-				EntityInit.TWITCH_ZOMBIE_ENTITY.get().spawn(world, null, component, world.getClosestPlayer(this.x,this.y, this.z), pos, SpawnReason.SPAWN_EGG,true, false);
+				TwitchZombieEntity twitchZombieEntity = EntityInit.TWITCH_ZOMBIE_ENTITY.get().spawn(world, null, component, world.getClosestPlayer(this.x,this.y, this.z), pos, SpawnReason.SPAWN_EGG,true, false);
+				assert twitchZombieEntity != null;
+				twitchZombieEntity.setCustomNameVisible(true);
 			}
 		});
 		ctx.get().setPacketHandled(true);
