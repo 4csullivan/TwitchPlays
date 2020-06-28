@@ -1,5 +1,6 @@
 package com.ravensdot.twitchplaysmod.network;
 
+import com.ravensdot.twitchplaysmod.entities.MobTypes;
 import com.ravensdot.twitchplaysmod.network.packets.EffectPacket;
 import com.ravensdot.twitchplaysmod.network.packets.SummonPacket;
 
@@ -21,8 +22,8 @@ public final class PacketHandler
 		    PROTOCOL_VERSION::equals
 		);
 	
-	public static void sendSummon(int x, int y, int z, String title, boolean isSub) {
-		INSTANCE.sendToServer(new SummonPacket(x, y, z, title, isSub));
+	public static void sendSummon(int x, int y, int z, String title, MobTypes type, boolean isSub) {
+		INSTANCE.sendToServer(new SummonPacket(x, y, z, title, type, isSub));
 	}
 
 	public static void sendEffect()

@@ -37,8 +37,8 @@ public class TwitchHandler
 	
 	public void register()
 	{
-		PlayerInteraction spawnMobEvent = new PlayerInteraction();
-		twitchClient.getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(spawnMobEvent);
+		PlayerInteraction playerInteraction = new PlayerInteraction();
+		twitchClient.getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(playerInteraction);
 	}
 	
 	public void start()

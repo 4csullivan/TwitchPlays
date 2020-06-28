@@ -8,6 +8,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class TwitchZombieEntity extends ZombieEntity
 {
@@ -22,9 +24,11 @@ public class TwitchZombieEntity extends ZombieEntity
 	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
 			ILivingEntityData spawnDataIn, CompoundNBT dataTag)
 	{
-		//dataTag.putInt("CustomNameVisible", 1);
-		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		return spawnDataIn;
 	}
+
+
 
 	@Override
 	protected void registerAttributes() {
@@ -32,7 +36,11 @@ public class TwitchZombieEntity extends ZombieEntity
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.27);
 	}
 
-	
+	@Override
+	protected boolean shouldBurnInDay() {
+		return false;
+	}
+
 	/*
 	@Override
 	public AgeableEntity createChild(AgeableEntity ageable)
