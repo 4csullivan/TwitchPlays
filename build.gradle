@@ -104,7 +104,9 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
 
-    /* NOTE: compile = test, shadow = release */
+    /*
+    *   NOTE: compile = test, shadow = release
+    */
     compile group: 'com.github.twitch4j', name: 'twitch4j', version: '1.0.0-alpha.24'
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
