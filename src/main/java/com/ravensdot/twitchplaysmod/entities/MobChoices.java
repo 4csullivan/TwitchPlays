@@ -30,7 +30,6 @@ public abstract class MobChoices {
                     EntityType.STRAY,
                     EntityType.VINDICATOR,
                     EntityType.WITCH,
-                    EntityType.WITHER,
                     EntityType.WITHER_SKELETON,
                     EntityType.ZOMBIE_PIGMAN,
                     EntityType.ZOMBIE_VILLAGER,
@@ -71,4 +70,14 @@ public abstract class MobChoices {
             )
     );
 
+    public static List<String> POSSIBLE_ENTITIES = new ArrayList<>();
+
+    public static void generateEntityList() {
+        List<String> entities = new ArrayList<>();
+        entities.add("random");
+        for (EntityType<?> e : ENTITY_TYPES) {
+            entities.add(e.getName().getUnformattedComponentText().toLowerCase());
+        }
+        POSSIBLE_ENTITIES = entities;
+    }
 }

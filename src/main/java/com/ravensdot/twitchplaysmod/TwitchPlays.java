@@ -1,5 +1,6 @@
 package com.ravensdot.twitchplaysmod;
 
+import com.ravensdot.twitchplaysmod.entities.MobChoices;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,6 +35,8 @@ public class TwitchPlays
         PacketHandler.register();
         
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TwitchConfig.SPEC);
+
+        MobChoices.generateEntityList();
     }
 
     private void setup(final FMLCommonSetupEvent event) { }

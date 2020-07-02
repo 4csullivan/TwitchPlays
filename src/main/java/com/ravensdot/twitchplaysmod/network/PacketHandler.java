@@ -22,8 +22,8 @@ public final class PacketHandler
 		    PROTOCOL_VERSION::equals
 		);
 	
-	public static void sendSummon(int x, int y, int z, String title, MobTypes type, boolean isSub) {
-		INSTANCE.sendToServer(new SummonPacket(x, y, z, title, type, isSub));
+	public static void sendSummon(int x, int y, int z, String title, String mobName, boolean isSub) {
+		INSTANCE.sendToServer(new SummonPacket(x, y, z, title, mobName, isSub));
 	}
 
 	public static void sendEffect()
