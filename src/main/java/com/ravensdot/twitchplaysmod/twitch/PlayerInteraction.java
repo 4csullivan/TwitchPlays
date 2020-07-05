@@ -34,7 +34,6 @@ public class PlayerInteraction
 	public static final int SPAWN_RADIUS = 6;
 	public static final int SPAWN_MIN_RADIUS = 2;
 	public static final int POTION_CHANCE = 30;
-	public static final int NUM_OF_MOBS = MobTypes.values().length;
 	public static final String RANDOM_MOB_NAME = "random";
 	private BlockPos playerPos;
 	private final Minecraft mc = Minecraft.getInstance();
@@ -64,20 +63,11 @@ public class PlayerInteraction
 					mobName = mobName.concat(" " + split[2]);
 					mobName = mobName.toLowerCase();
 				}
-
-				/*try {
-					type = MobTypes.valueOf(mobName);
-				} catch (Exception e) {
-					e.printStackTrace();
-					event.respondToUser("that mob doesn't exist :/");
-					return;
-				}*/
 			}
 			if (!MobChoices.POSSIBLE_ENTITIES.contains(mobName)) {
 				event.respondToUser("That mob doesn't exist or is not allowed to spawn :/");
 				return;
 			}
-			//mc.player.sendMessage(new StringTextComponent(String.format("%s has spawned %s!", username, mobName)));
 
 			BlockPos spawnLoc = findSpawnLoc();
 			PacketHandler.sendSummon(spawnLoc.getX(), spawnLoc.getY(), spawnLoc.getZ(), username, mobName, isSub(permissions));
@@ -113,16 +103,7 @@ public class PlayerInteraction
 				PacketHandler.sendEffect();
 			} else {
 				BlockPos spawnLoc = findSpawnLoc();
-				MobTypes type = MobTypes.ZOMBIE;
-				int mobChances = (100 - POTION_CHANCE)/NUM_OF_MOBS;
-				if (choice < mobChances + POTION_CHANCE) {
-					type = MobTypes.ZOMBIE;
-				} else if (choice < mobChances * 2 + POTION_CHANCE) {
-					type = MobTypes.SPIDER;
-				} else {
-					type = MobTypes.SILVERFISH;
-				}
-				PacketHandler.sendSummon(spawnLoc.getX(), spawnLoc.getY(), spawnLoc.getZ(), username, "zombie", false);
+				PacketHandler.sendSummon(spawnLoc.getX(), spawnLoc.getY(), spawnLoc.getZ(), username, RANDOM_MOB_NAME, false);
 			}
 
 		}

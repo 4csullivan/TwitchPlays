@@ -72,7 +72,7 @@ public class TwitchConfig
 			SpawnRateLimit = builder
 					.comment("Limit how often a user can spawn")
 					.define("spawnRateLimit", 5f);
-			
+
 			builder.pop();
 		}
 	}

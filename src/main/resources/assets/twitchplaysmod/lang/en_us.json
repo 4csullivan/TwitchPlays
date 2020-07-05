@@ -1,4 +1,10 @@
 {
   "item.twitchplaysmod.twitch_config_item": "Twitch Config",
-  "entities.twitchplaysmod.twitch_zombie": "Twitch Zombie"
+  "entities.twitchplaysmod.twitch_zombie": "Twitch Zombie",
+  "gui.twitchplaysmod.button_done": "Close",
+  "gui.twitchplaysmod.button_connect": "Connect",
+  "gui.twitchplaysmod.button_disconnect": "Disconnect",
+  "gui.twitchplaysmod.button_save": "Save",
+  "gui.twitchplaysmod.channel_add": "Channel Name",
+  "gui.twitchplaysmod.title": "Twitch Config"
 }
